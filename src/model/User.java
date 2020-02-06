@@ -11,20 +11,26 @@ public class User {
 	
 	@NotNull(message = "Please enter a username. This is a required field.")
 	@Size(min = 4, max = 15)
-	String username = "";
+	private String username = "";
 
 	@NotNull(message = "Please enter a password. This is a required field.")
 	@Size(min = 4, max = 15)
-	String password = "";
+	private String password = "";
 
-	@NotNull(message = "Please enter an ID. This is a required field.")
-	int ID;
+	private int id;
 
-	public User(String username, String password, int iD) {
+	public User() {
+		super();
+		this.username = "";
+		this.password = "";
+		this.id = -1;
+	}
+	
+	public User(String username, String password, int id) {
 		super();
 		this.username = username;
 		this.password = password;
-		ID = iD;
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -44,11 +50,11 @@ public class User {
 	}
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		this.id = id;
 	}
 
 }

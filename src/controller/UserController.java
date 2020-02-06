@@ -19,16 +19,16 @@ public class UserController {
 	public String onRegister(User user) {
 		try {
 			// call business service to register and store outcome in a boolean object
-			boolean outcome = userService.onRegister(user);
+			boolean outcome = userService.processRegistration(user);
 			// if outcome true go to success/ false unsuccessful
 			if (outcome) {
-				return "registrationSuccessful.xhtml";
+				return "registrationSuccessful.xhtml";	//TODO rename once we get the view name
 			} else {
-				return "unsuccsessfulLogin.xhtml";
+				return "unsuccsessfulLogin.xhtml";	//TODO rename once we get the view name
 			}
 			// if there is a database error catch it with custom exception
 		} catch (Exception e) {
-			return "error.xhtml";
+			return "error.xhtml"; //TODO rename once we get the view name
 		}
 	}
 
@@ -41,7 +41,7 @@ public class UserController {
 
 		try {
 			// login user using the businessService
-			if (userService.onLogin(user) == true) {
+			if (userService.AuthenticateUser(user) == true) {
 				// set user credentials to the user
 				session.setAttribute("username", user.getUsername());
 				return "successfulLogin.xhtml";
