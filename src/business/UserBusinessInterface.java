@@ -22,7 +22,7 @@ public interface UserBusinessInterface {
 	 * @param user
 	 * @return Boolean
 	 */
-	public Boolean processRegistration(User user);
+	public Boolean processRegistration(User user) throws Exception;
 	
 	/**
 	 * Get user from the database and authenticate login
