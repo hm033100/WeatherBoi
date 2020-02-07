@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<head>
+	<title><ui:insert name="title">WeatherBoi</ui:insert></title>
+	<link rel="css" href="/resources/css/metro-all.min.css" />
+	<link rel="css" href="/resources/css/metro-animations.min.css" />
+	<link rel="css" href="/resources/css/metro-colors.min.css" />
+	<link rel="css" href="/resources/css/metro-icons.min.css" />
+	<link rel="css" href="/resources/css/metro-rtl.min.css"/>
+	<link rel="css" href="/resources/css/metro-third.min.css" />
+	<link rel="css" href="/resources/metro.min.css" />
+</head>
+
+<body>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/layouts/CommonHeader.xhtml" />
+		</ui:insert>
+	</div>
+	
+	<div id="content">
+		<ui:insert name="content">
+			<ui:include src="/layouts/CommonContent.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/layouts/CommonFooter.xhtml" />
+		</ui:insert>
+	</div>
+
+
+					
+
+
+
+</body>
+		
+</html>
