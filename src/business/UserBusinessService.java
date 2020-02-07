@@ -4,7 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
+
 import model.User;
+import data.DataAcessInterface;
+import exception.RecordNotCreatedException;;
 
 /**
  * 
@@ -14,6 +19,9 @@ import model.User;
 public class UserBusinessService implements UserBusinessInterface {
 
 	private List<User> users;
+	
+	@Inject 
+	DataAcessInterface<User> das;
 
 	/**
 	 * @see UserBusinessInterface
@@ -32,15 +40,18 @@ public class UserBusinessService implements UserBusinessInterface {
 	}
 
 	/**
+	 * @throws RecordNotCreatedException 
 	 * @see UserBusinessInterface
 	 */
 	@Override
-	public Boolean processRegistration(User user) {
+	public Boolean processRegistration(User user) throws RecordNotCreatedException {
 		//Hash the user password
 		user.setPassword(hashPassword(user.getPassword()));
 		
 		//Send user to database
-		int dataReturned = 0; //TODO query database
+		int dataReturned = 0; //TODO Check if there is more than 1 user -Hermes
+		
+			das.CreateT(user);
 		
 		//return true if effected rows is one
 		if(dataReturned == 1) {

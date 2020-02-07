@@ -1,9 +1,11 @@
-/**
- * 
- */
 package data;
 
+import java.sql.DriverManager;
 import java.util.List;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import exception.RecordNotCreatedException;
 import exception.RecordNotDeletedException;
@@ -17,6 +19,12 @@ import model.User;
  */
 public class UserDataAccess implements DataAcessInterface<User> {
 
+	// Instantiate connection code
+	Connection conn = null;
+	String url = "jdbc:mysql://localhost:3306/weatherboi";
+	String username = "root";
+	String password = "root";
+
 	/**
 	 * 
 	 */
@@ -26,8 +34,36 @@ public class UserDataAccess implements DataAcessInterface<User> {
 
 	@Override
 	public int CreateT(User model) throws RecordNotCreatedException {
-		// TODO Auto-generated method stub
-		return 0;
+
+		String SQLInsertUser = String
+				.format("INSERT INTO `user` (`USER_ID`, `FIRST_NAME`, `LAST_NAME`, `USER_NAME`, `PASSWORD`)"
+						+ " VALUES (NULL, NULL, NULL, '%s', '%s');", model.getUsername(), model.getPassword());
+		int rowsAffected = -1;
+
+		try {
+			// connect to database
+			conn = DriverManager.getConnection(url, username, password);
+			// create statement
+			Statement stmt = conn.createStatement();
+			// Run the SQL code
+			rowsAffected = stmt.executeUpdate(SQLInsertUser);
+			return rowsAffected;
+		} catch (SQLException e) {
+			// print stack trace
+			e.printStackTrace();
+			// throw custom exception
+			throw new RecordNotCreatedException();
+		} finally {
+			if (conn != null) {
+				try {
+					// close connection
+					conn.close();
+				} catch (SQLException e) {
+					// print stack trace
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
