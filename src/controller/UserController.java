@@ -22,9 +22,9 @@ public class UserController {
 			boolean outcome = userService.processRegistration(user);
 			// if outcome true go to success/ false unsuccessful
 			if (outcome) {
-				return "registrationSuccessful.xhtml";	//TODO rename once we get the view name
+				return "Login.xhtml";
 			} else {
-				return "unsuccsessfulLogin.xhtml";	//TODO rename once we get the view name
+				return "Register.xhtml";
 			}
 			// if there is a database error catch it with custom exception
 		} catch (Exception e) {

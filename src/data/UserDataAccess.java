@@ -3,6 +3,10 @@ package data;
 import java.sql.DriverManager;
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +21,9 @@ import model.User;
  * @author Nathan Ford
  *
  */
+@Stateless
+@Local(DataAcessInterface.class)
+@LocalBean
 public class UserDataAccess implements DataAcessInterface<User> {
 
 	// Instantiate connection code

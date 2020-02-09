@@ -5,6 +5,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.faces.bean.ManagedBean;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 import model.User;
@@ -16,6 +21,10 @@ import exception.RecordNotCreatedException;;
  * @author Hermes Mimini
  *
  */
+
+@Stateless
+@Local(UserBusinessInterface.class)
+@LocalBean
 public class UserBusinessService implements UserBusinessInterface {
 
 	private List<User> users;

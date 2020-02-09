@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/layouts/CommonLayout.xhtml">
+			<ui:define name="title">Login</ui:define>
+			<ui:define name="content">
+				<div class="container h-50">
+					<div id="chart_div" class="pos-center"></div>
+				</div>
+				
+				<script type="text/javascript">
+				google.charts.load('current', {packages: ['corechart', 'bar']});
+				google.charts.setOnLoadCallback(drawMultSeries);
+
+				function drawMultSeries() {
+					google.charts.load("current", {packages:['corechart']});
+				    google.charts.setOnLoadCallback(drawChart);
+				    function drawChart() {
+				      var data = google.visualization.arrayToDataTable([
+				        ["Date", "Temp", { role: "style" } ],
+				        ['#{weather.week.dayOne}', #{weather.week.tempOne}, "Blue"],
+				        ['#{weather.week.dayTwo}', #{weather.week.tempTwo}, "Blue"],
+				        ['#{weather.week.dayThree}', #{weather.week.tempThree}, "Blue"],
+				        ['#{weather.week.dayFour}', #{weather.week.tempFour}, "Blue"],
+				        ['#{weather.week.dayFive}', #{weather.week.tempFive}, "Blue"],
+				        ['#{weather.week.daySix}', #{weather.week.tempSix}, "Blue"],
+				        ['#{weather.week.daySeven}', #{weather.week.tempSeven}, "Blue"]
+				      ]);
+
+				      var view = new google.visualization.DataView(data);
+				      view.setColumns([0, 1,
+				                       { calc: "stringify",
+				                         sourceColumn: 1,
+				                         type: "string",
+				                         role: "annotation" },
+				                       2]);
+
+				      var options = {
+				        title: "Hours worked coding",
+				        width: 600,
+				        height: 400,
+				        bar: {groupWidth: "95%"},
+				        legend: { position: "none" },
+				      };
+				      var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
+				      chart.draw(view, options);
+				  }
+				    }
+				</script>
+			</ui:define>
+	</ui:composition>
+
+</html>
