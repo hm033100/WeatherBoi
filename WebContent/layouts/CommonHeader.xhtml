@@ -15,7 +15,13 @@
 			    	<h:link value="Register" outcome="Register" />
 			    </li>
 			    </h:panelGroup>
-			    
+			    <h:panelGroup rendered="#{principal != null}" >
+			    <li class="bg-cyan-hover">
+			    	<h:form>
+			    		<h:commandLink action="#{userController.onLogout()}" value="Logour" />
+			    	</h:form>
+			    </li>
+			    </h:panelGroup>
 			</ul>
 		</div>	
 	</ui:component>
