@@ -1,0 +1,12 @@
+body {
+	background: #000 url("#{request.contextPath}/resources/images/clouds.jpg") center no-repeat;
+	background-size: auto;
+}
+
+.form-group.grid + .form-group.grid {
+	margin-top: 0.5rem !important;
+}
+
+.fullscreen {
+	height: 95vh;
+}

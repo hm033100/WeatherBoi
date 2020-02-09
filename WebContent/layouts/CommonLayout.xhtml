@@ -3,28 +3,27 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
-<head>
+<h:head>
 	<title><ui:insert name="title">WeatherBoi</ui:insert></title>
-	<link rel="css" href="/resources/css/metro-all.min.css" />
-	<link rel="css" href="/resources/css/metro-animations.min.css" />
-	<link rel="css" href="/resources/css/metro-colors.min.css" />
-	<link rel="css" href="/resources/css/metro-icons.min.css" />
-	<link rel="css" href="/resources/css/metro-rtl.min.css"/>
-	<link rel="css" href="/resources/css/metro-third.min.css" />
-	<link rel="css" href="/resources/metro.min.css" />
-</head>
+	<meta name="viewport" content="width=device-width, height=device-height initial-scale=1.0" />
+	
+	<h:outputStylesheet name="css/metro-all.min.css"/>
+	<h:outputStylesheet name="css/muse-all.css" />
+</h:head>
 
-<body>
+<h:body>
 	<div id="header">
 		<ui:insert name="header">
 			<ui:include src="/layouts/CommonHeader.xhtml" />
 		</ui:insert>
 	</div>
 	
-	<div id="content">
-		<ui:insert name="content">
-			<ui:include src="/layouts/CommonContent.xhtml" />
-		</ui:insert>
+	<div id="content" class="fullscreen">
+		<div id="mainContent" class="op-black container h-100 ">
+			<ui:insert name="content">
+				<ui:include src="/layouts/CommonContent.xhtml" />
+			</ui:insert>
+		</div>
 	</div>
 
 	<div id="footer">
@@ -32,12 +31,6 @@
 			<ui:include src="/layouts/CommonFooter.xhtml" />
 		</ui:insert>
 	</div>
-
-
-					
-
-
-
-</body>
+</h:body>
 		
 </html>

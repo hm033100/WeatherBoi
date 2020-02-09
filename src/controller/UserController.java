@@ -55,5 +55,10 @@ public class UserController {
 		}
 
 	}
+	
+	public String onLogout()
+	{
+		return "";
+	}
 
 }

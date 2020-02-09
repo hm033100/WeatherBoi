@@ -4,7 +4,19 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-			<ui:component name="header">
-			Header
-			</ui:component>
+	<ui:component name="header">
+		<div>
+			<ul class="h-menu bg-darkCyan fg-light">	
+			    <h:panelGroup rendered="#{principal == null}">
+			    <li class="bg-cyan-hover">
+			    	<h:link value="Login" outcome="Login" />
+			    </li>
+			    <li class="bg-cyan-hover">
+			    	<h:link value="Register" outcome="Register" />
+			    </li>
+			    </h:panelGroup>
+			    
+			</ul>
+		</div>	
+	</ui:component>
 </html>

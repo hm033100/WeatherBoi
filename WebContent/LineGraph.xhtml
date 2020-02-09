@@ -4,12 +4,16 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 
-
-	<ui:component name="footer">
-		<div class="bottom-nav bg-darkCyan fg-light fixed-bottom">
-			<h:outputText value="@Product of Nathan Ford, Dominic Sutton, and Hermes Mimini" />
-		</div>
-	</ui:component>
-
+	<!-- 
+		Replace path to template, title, header and body
+		with actual data.
+	 -->
+	<ui:composition template="/layouts/CommonLayout.xhtml">
+			<ui:define name="title">Login</ui:define>
+			<ui:define name="content">
+				<div class="container h-50">
+				</div>
+			</ui:define>
+	</ui:composition>
 
 </html>
