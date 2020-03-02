@@ -29,6 +29,6 @@ public interface UserBusinessInterface {
 	 * @param user
 	 * @return Boolean
 	 */
-	public Boolean AuthenticateUser(User user);
+	public Boolean AuthenticateUser(User user) throws Exception;
 
 }

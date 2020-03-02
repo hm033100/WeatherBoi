@@ -4,9 +4,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
-
-import business.UserBusinessInterface;
+import business.UserBusinessService;
 import model.User;
 
 @ManagedBean
@@ -14,51 +12,46 @@ import model.User;
 public class UserController {
 
 	@Inject
-	UserBusinessInterface userService;
+	UserBusinessService userService;
 
 	public String onRegister(User user) {
 		try {
-			// call business service to register and store outcome in a boolean object
-			boolean outcome = userService.processRegistration(user);
 			// if outcome true go to success/ false unsuccessful
-			if (outcome) {
+			if (userService.processRegistration(user)) {
 				return "Login.xhtml";
 			} else {
 				return "Register.xhtml";
 			}
 			// if there is a database error catch it with custom exception
 		} catch (Exception e) {
-			return "error.xhtml"; //TODO rename once we get the view name
+			e.printStackTrace();
+			return "Register.xhtml"; //TODO make error page
 		}
 	}
 
 	public String onLogin(User user) {
-
-		// Create session variable
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-		// put user on the page
-		FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("user", user);
-
 		try {
 			// login user using the businessService
-			if (userService.AuthenticateUser(user) == true) {
+			if (userService.AuthenticateUser(user)) {
 				// set user credentials to the user
-				session.setAttribute("username", user.getUsername());
-				return "successfulLogin.xhtml";
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
+				return "ColumnChart.xhtml";
 			} else {
 				// display unsuccessful page
-				return "unsuccsessfulLogin.xhtml";
+				return "Login.xhtml";
 			}
 			// if there is a database error catch it with custom exception
 		} catch (Exception e) {
-			return "error.xhtml";
+			e.printStackTrace();
+			return "Login.xhtml";	//TODO make exceptions page
 		}
 
 	}
 	
 	public String onLogout()
 	{
-		return "";
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+		return "Login.xhtml";
 	}
 
 }

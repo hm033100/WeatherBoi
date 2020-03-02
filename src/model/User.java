@@ -5,17 +5,17 @@ import javax.faces.bean.ViewScoped;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Email;
-
 @ManagedBean
 @ViewScoped
 public class User {
 	
 	private int id;
 	
-	@NotNull(message = "Please enter an email. This is a required field.")
-	@Email(message = "This field must be an email.")
-	private String email;
+	@NotNull(message = "Please enter an First Name. This is a required field.")
+	private String firstName;
+	
+	@NotNull(message = "Please enter your Last Name. This is a required field.")
+	private String lastName;
 	
 	@NotNull(message = "Please enter a username. This is a required field.")
 	@Size(min = 4, max = 15)
@@ -30,11 +30,20 @@ public class User {
 	public User() {
 		super();
 		this.id = -1;
-		this.email = "";
 		this.username = "";
 		this.password = "";
 	}
 	
+	public User(int id, String firstName, String lastName, String username, String password) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -43,21 +52,20 @@ public class User {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public User(int id, String email, String username, String password) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.username = username;
-		this.password = password;
-		
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getUsername() {
@@ -75,13 +83,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public int getID() {
-		return id;
-	}
-
-	public void setID(int id) {
-		this.id = id;
-	}
-
+	
 }
