@@ -23,8 +23,8 @@
 				
 					<!-- Email Field -->
 					<div class="form-group">
-						<label for="lastname">Email</label>
-						<h:inputText value="#{user.lastName}" id="lastName"/><br />
+						<label for="lastname">Last Name</label>
+						<h:inputText value="#{user.lastName}" id="lastname"/><br />
 						<small class="text-muted"><h:message for="lastname" class="fg-crimson" /></small>
 					</div>
 					
@@ -38,7 +38,7 @@
 					<!-- Password Field -->
 					<div class="form-group">
 						<label for="password">Password</label>
-						<h:inputText value="#{user.password}" id="password"/><br />
+						<h:inputSecret value="#{user.password}" id="password"/><br />
 						<small class="text-muted"><h:message for="password" class="fg-crimson"/></small>
 					</div>
 					

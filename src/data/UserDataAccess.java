@@ -58,6 +58,7 @@ public class UserDataAccess implements DataAcessInterface<User> {
 			Statement stmt = conn.createStatement();
 			// Run the SQL code
 			int rowsAffected = stmt.executeUpdate(SQLInsertUser);
+			
 			return rowsAffected;
 		} catch (SQLException e) {
 			// print stack trace

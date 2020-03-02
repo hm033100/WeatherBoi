@@ -2,17 +2,14 @@ package business;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import model.User;
-import data.DataAcessInterface;
 import data.UserDataAccess;
 import exception.RecordNotCreatedException;
-import exception.RecordNotFoundException;;
 
 /**
  * 
@@ -24,8 +21,6 @@ import exception.RecordNotFoundException;;
 @Local(UserBusinessInterface.class)
 @LocalBean
 public class UserBusinessService implements UserBusinessInterface {
-
-	private List<User> users;
 	
 	@Inject 
 	UserDataAccess das;
@@ -34,7 +29,7 @@ public class UserBusinessService implements UserBusinessInterface {
 	 * @see UserBusinessInterface
 	 */
 	public UserBusinessService() {
-		users = new ArrayList<User>();
+		
 	}
 
 	/**
@@ -56,18 +51,9 @@ public class UserBusinessService implements UserBusinessInterface {
 		user.setPassword(hashPassword(user.getPassword()));
 		
 		//Send user to database
-		int dataReturned = 0; //TODO Check if there is more than 1 user -Hermes
+		int dataReturned = das.CreateT(user);
 		
-			das.CreateT(user);
-		
-		//return true if effected rows is one
-		if(dataReturned == 1) {
-			return true;
-		}
-		//return false otherwise
-		else {
-			return false;
-		}
+		return dataReturned == 1 ? true : false;
 	}
 
 	@Override
