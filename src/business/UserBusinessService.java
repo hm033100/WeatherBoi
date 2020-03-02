@@ -4,17 +4,15 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-
 import model.User;
 import data.DataAcessInterface;
-import exception.RecordNotCreatedException;;
+import data.UserDataAccess;
+import exception.RecordNotCreatedException;
+import exception.RecordNotFoundException;;
 
 /**
  * 
@@ -30,7 +28,7 @@ public class UserBusinessService implements UserBusinessInterface {
 	private List<User> users;
 	
 	@Inject 
-	DataAcessInterface<User> das;
+	UserDataAccess das;
 
 	/**
 	 * @see UserBusinessInterface
@@ -73,16 +71,16 @@ public class UserBusinessService implements UserBusinessInterface {
 	}
 
 	@Override
-	public Boolean AuthenticateUser(User user) {
+	public Boolean AuthenticateUser(User user) throws Exception {
 		//Get user from the database
-		User dbUser = new User(); //TODO Impliment
+		User dbUser = das.ReadTByField(user);
 		
 		//Hash logging in users credentials
+		user.setPassword(hashPassword(user.getPassword()));
 		
-		//Compare
-		//Return true if they match
-		//Return false if they don't
-		return false;
+		//Compare and return result
+		return dbUser.getPassword().equals(user.getPassword()) ? true : false;
+
 	}
 	
 	public String hashPassword(String pass) {
