@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
@@ -34,7 +35,7 @@ public class IndividualDataService implements DataAccessInterface<IndividualData
 		try {
 			//Create the sql
 			String sql = String.format("INSERT INTO `weatherboi`.`data` "
-					+ "(`TEMP`, `PRESS`, `HUMID`) VALUES (%f, %f, %f",
+					+ "(`TEMP`, `PRESS`, `HUMID`) VALUES (%f, %f, %f)",
 					model.getTemp(),
 					model.getPress(),
 					model.getHumid());
@@ -75,10 +76,11 @@ public class IndividualDataService implements DataAccessInterface<IndividualData
 	@Override
 	public IndividualData ReadTByField(IndividualData model) throws RecordNotFoundException {
 		try {
+			String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(model.getDate());
 			//Create the sql
 			String sql = String.format("SELECT `DATA_ID`, `DATE`, `TEMP`, `PRESS`, `HUMID` "
-					+ "FROM `weatherboi`.`data` WHERE `DATE` = DATE '%tF'", 
-					model.getDate());
+					+ "FROM `weatherboi`.`data` WHERE `DATE` = '%s'", 
+					formattedDate);
 			
 			//Get a connection
 			this.conn = DriverManager.getConnection(url, username, password);
