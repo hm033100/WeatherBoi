@@ -13,7 +13,7 @@ import exception.RecordNotUpdatedException;
  *
  * @param <T>
  */
-public interface DataAcessInterface<T> {
+public interface DataAccessInterface<T> {
 
 	/**
 	 * Store model in the database

@@ -6,22 +6,18 @@
 
 	<ui:component name="header">
 		<div>
-			<ul class="h-menu bg-darkCyan fg-light">	
-			    <h:panelGroup rendered="#{principal == null}">
+			<ul class="h-menu bg-darkCyan fg-light">
 			    <li class="bg-cyan-hover">
-			    	<h:link value="Login" outcome="Login" />
+			    	<h:link value="Login" outcome="Login" rendered="#{param['principal'] == null}" />
 			    </li>
 			    <li class="bg-cyan-hover">
-			    	<h:link value="Register" outcome="Register" />
+			    	<h:link value="Register" outcome="Register" rendered="#{param['principal'] == null}" />
 			    </li>
-			    </h:panelGroup>
-			    <h:panelGroup rendered="#{principal != null}" >
 			    <li class="bg-cyan-hover">
 			    	<h:form>
-			    		<h:commandLink action="#{userController.onLogout()}" value="Logour" />
+			    		<h:commandLink action="#{userController.onLogout()}" value="Logout" rendered="#{param['principal'] != null}" />
 			    	</h:form>
 			    </li>
-			    </h:panelGroup>
 			</ul>
 		</div>	
 	</ui:component>

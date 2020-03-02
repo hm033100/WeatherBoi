@@ -34,7 +34,7 @@ public class UserController {
 			// login user using the businessService
 			if (userService.AuthenticateUser(user)) {
 				// set user credentials to the user
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("principal", user);
 				return "ColumnChart.xhtml";
 			} else {
 				// display unsuccessful page

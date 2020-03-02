@@ -23,9 +23,9 @@ import model.User;
  *
  */
 @Stateless
-@Local(DataAcessInterface.class)
+@Local(DataAccessInterface.class)
 @LocalBean
-public class UserDataAccess implements DataAcessInterface<User> {
+public class UserDataAccess implements DataAccessInterface<User> {
 
 	// Instantiate connection code
 	Connection conn = null;

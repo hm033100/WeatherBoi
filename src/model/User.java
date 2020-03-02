@@ -29,7 +29,7 @@ public class User {
 
 	public User() {
 		super();
-		this.id = -1;
+		this.id = 0;
 		this.username = "";
 		this.password = "";
 	}

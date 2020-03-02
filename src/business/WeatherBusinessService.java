@@ -1,9 +1,15 @@
 package business;
 
+import java.sql.Date;
+import java.util.ArrayList;
+
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
+import data.IndividualDataService;
+import model.IndividualData;
 import model.WeekTemp;
 
 @Stateless
@@ -11,8 +17,16 @@ import model.WeekTemp;
 @LocalBean
 public class WeatherBusinessService implements WeatherBusinessInterface {
 
+	@Inject
+	IndividualDataService ids;
+	
 	public WeekTemp CreateWeek()
 	{
+		ArrayList<IndividualData> data = new ArrayList<IndividualData>();
+		for(int i = 0; i < 7; i++) {
+			IndividualData temp = new IndividualData();
+			//temp.setDate(new Date());
+		}
 		WeekTemp week = new WeekTemp();
 		week.setDayOne("2/9/2020");
 		week.setDayTwo("2/10/2020");
