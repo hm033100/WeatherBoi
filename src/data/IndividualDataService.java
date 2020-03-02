@@ -5,13 +5,18 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
-
+import javax.ejb.Local;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import exception.RecordNotCreatedException;
 import exception.RecordNotDeletedException;
 import exception.RecordNotFoundException;
 import exception.RecordNotUpdatedException;
 import model.IndividualData;
 
+@LocalBean
+@Local(DataAccessInterface.class)
+@Stateless
 public class IndividualDataService implements DataAccessInterface<IndividualData> {
 
 	// Instantiate connection code

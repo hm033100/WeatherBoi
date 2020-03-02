@@ -1,7 +1,7 @@
 package business;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.Local;
 import javax.ejb.LocalBean;
@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import data.IndividualDataService;
+import exception.RecordNotFoundException;
 import model.IndividualData;
 import model.WeekTemp;
 
@@ -20,28 +21,31 @@ public class WeatherBusinessService implements WeatherBusinessInterface {
 	@Inject
 	IndividualDataService ids;
 	
-	public WeekTemp CreateWeek()
+	public WeekTemp CreateWeek() throws RecordNotFoundException
 	{
+		Date today = new Date();
 		ArrayList<IndividualData> data = new ArrayList<IndividualData>();
-		for(int i = 0; i < 7; i++) {
+		for(int i = 7; i > 0 ; i--) {
+			Date tempDate = new Date(today.getTime() - (i * 24 * 60 * 60 * 1000));
 			IndividualData temp = new IndividualData();
-			//temp.setDate(new Date());
+			temp.setDate(tempDate);
+			data.add(ids.ReadTByField(temp));
 		}
 		WeekTemp week = new WeekTemp();
-		week.setDayOne("2/9/2020");
-		week.setDayTwo("2/10/2020");
-		week.setDayThree("2/11/2020");
-		week.setDayFour("2/12/2020");
-		week.setDayFive("2/13/2020");
-		week.setDaySix("2/14/2020");
-		week.setDaySeven("2/15/2020");
-		week.setTempOne(72);
-		week.setTempTwo(70);
-		week.setTempThree(63);
-		week.setTempFour(59);
-		week.setTempFive(63);
-		week.setTempSix(65);
-		week.setTempSeven(75);
+		week.setDayOne(data.get(0).getDate().toString());
+		week.setDayTwo(data.get(1).getDate().toString());
+		week.setDayThree(data.get(2).getDate().toString());
+		week.setDayFour(data.get(3).getDate().toString());
+		week.setDayFive(data.get(4).getDate().toString());
+		week.setDaySix(data.get(5).getDate().toString());
+		week.setDaySeven(data.get(6).getDate().toString());
+		week.setTempOne(data.get(0).getTemp());
+		week.setTempTwo(data.get(1).getTemp());
+		week.setTempThree(data.get(2).getTemp());
+		week.setTempFour(data.get(3).getTemp());
+		week.setTempFive(data.get(4).getTemp());
+		week.setTempSix(data.get(5).getTemp());
+		week.setTempSeven(data.get(6).getTemp());
 		
 		return week;
 	}

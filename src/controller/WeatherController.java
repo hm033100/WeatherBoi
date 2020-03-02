@@ -21,7 +21,13 @@ public class WeatherController {
 	
 	public WeekTemp getWeek()
 	{
-		return weatherService.CreateWeek();
+		try {
+			return weatherService.CreateWeek();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new WeekTemp();
+		}
+		
 	}
 	
 	
