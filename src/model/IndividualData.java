@@ -18,6 +18,12 @@ public class IndividualData {
 		this.press = 0.0f;
 		this.humid = 0.0f;
 	}
+	
+	public IndividualData(float temp, float press, float humid) {
+		this.temp = temp;
+		this.press = press;
+		this.humid = humid;
+	}
 
 	public IndividualData(int id, Date date, float temp, float press, float humid) {
 		super();

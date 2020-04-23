@@ -7,17 +7,15 @@
 	<ui:component name="header">
 		<div>
 			<ul class="h-menu bg-darkCyan fg-light">
-			    <li class="bg-cyan-hover">
-			    	<h:link value="Login" outcome="Login" rendered="#{param['principal'] == null}" />
+				<li class="bg-cyan-hover">
+			    	<h:link value="Login" outcome="Login" />
 			    </li>
 			    <li class="bg-cyan-hover">
-			    	<h:link value="Register" outcome="Register" rendered="#{param['principal'] == null}" />
+			    	<h:link value="Register" outcome="Register" />
 			    </li>
-			    <li class="bg-cyan-hover">
-			    	<h:form>
-			    		<h:commandLink action="#{userController.onLogout()}" value="Logout" rendered="#{param['principal'] != null}" />
-			    	</h:form>
-			    </li>
+				<li class="bg-cyan-hover">
+					<h:link value="Log out" outcome="#{userController.onLogout()}" />
+		    	</li>
 			</ul>
 		</div>	
 	</ui:component>

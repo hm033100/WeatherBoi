@@ -29,7 +29,7 @@ public class UserDataAccess implements DataAccessInterface<User> {
 
 	// Instantiate connection code
 	Connection conn = null;
-	String url = "jdbc:mysql://localhost:3306/weatherboi";
+	String url = "jdbc:mysql://localhost:3307/weatherboi";
 	String username = "root";
 	String password = "root";
 

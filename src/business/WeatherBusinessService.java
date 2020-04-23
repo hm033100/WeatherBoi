@@ -25,7 +25,7 @@ public class WeatherBusinessService implements WeatherBusinessInterface {
 	{
 		Date today = new Date();
 		ArrayList<IndividualData> data = new ArrayList<IndividualData>();
-		for(int i = 6; i >+ 0 ; i--) {
+		for(int i = 6; i >= 0 ; i--) {
 			Date tempDate = new Date(today.getTime() - (i * 24 * 60 * 60 * 1000));
 			IndividualData temp = new IndividualData();
 			temp.setDate(tempDate);
